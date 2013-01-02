@@ -1,0 +1,8 @@
+{
+	"name": "hybridlogic/validation",
+	"description": "Validation libraries for forms and services",
+	"keywords": ["validation", "forms", "services", "models", "rules"],
+	"require": {
+		"php": ">=5.3.0"
+	}
+}
