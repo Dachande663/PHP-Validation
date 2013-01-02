@@ -3,12 +3,12 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Validate email address
+ * Email
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class EmailAddress implements \HybridLogic\Validation\Rule {
+class Email implements \HybridLogic\Validation\Rule {
 
 
 	/**
@@ -39,4 +39,4 @@ class EmailAddress implements \HybridLogic\Validation\Rule {
 
 
 
-} // end class: Matches
+} // end class: Email

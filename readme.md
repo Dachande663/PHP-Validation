@@ -48,7 +48,7 @@ $validator
 	->add_rule('name', new Rule\MinLength(5))
 	->add_rule('name', new Rule\MaxLength(10))
 	->add_rule('email', new Rule\MinLength(5))
-	->add_rule('email', new Rule\EmailAddress())
+	->add_rule('email', new Rule\Email())
 	->add_rule('password', new Rule\Matches('password2'))
 ;
 

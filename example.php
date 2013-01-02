@@ -27,7 +27,7 @@ $validator
 	->add_filter('email', 'trim')
 	->add_filter('email', 'strtolower')
 	->add_rule('email', new Rule\MinLength(5))
-	->add_rule('email', new Rule\EmailAddress())
+	->add_rule('email', new Rule\Email())
 
 	->add_rule('password', new Rule\Matches('password2'))
 	->set_label('password2', 'password confirmation')
