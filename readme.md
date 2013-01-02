@@ -39,16 +39,17 @@ use HybridLogic\Validation\Rule;
 
 $validator = new Validator($_POST);
 $validator
-	->set_label('name', 'your name')
+	->set_label('name', 'first name')
+	->set_label('email', 'email address')
+	->set_label('password2', 'password confirmation')
 	->add_filter('name', 'trim')
-	->add_rule('name', new Rule\MinLength(5))
-	->add_rule('name', new Rule\MaxLength(10))
 	->add_filter('email', 'trim')
 	->add_filter('email', 'strtolower')
+	->add_rule('name', new Rule\MinLength(5))
+	->add_rule('name', new Rule\MaxLength(10))
 	->add_rule('email', new Rule\MinLength(5))
 	->add_rule('email', new Rule\EmailAddress())
 	->add_rule('password', new Rule\Matches('password2'))
-	->set_label('password2', 'password confirmation')
 ;
 
 if($validator->is_valid()) {
