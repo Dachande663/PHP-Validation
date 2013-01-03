@@ -3,12 +3,30 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Validate an email address
+ * Field value must match Equal value
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class Email implements \HybridLogic\Validation\Rule {
+class Equal implements \HybridLogic\Validation\Rule {
+
+
+	/**
+	 * @var string Value to compare against
+	 **/
+	protected $value;
+
+
+	/**
+	 * Constructor
+	 *
+	 * @param string Value to compare against
+	 * @return void
+	 **/
+	public function __construct($value) {
+		$this->value = $value;
+	} // end func: __construct
+
 
 
 	/**
@@ -20,7 +38,7 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return (bool) filter_var($value, FILTER_VALIDATE_EMAIL);
+		return $value === $value;
 	} // end func: validate
 
 
@@ -34,9 +52,9 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . ' must be a valid email address';
+		return $validator->get_label($field) . ' must match the expected value';
 	} // end func: get_error_message
 
 
 
-} // end class: Email
+} // end class: Equal

@@ -3,12 +3,30 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Validate an email address
+ * Number must be greater than or equal to value
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class Email implements \HybridLogic\Validation\Rule {
+class NumMin implements \HybridLogic\Validation\Rule {
+
+
+	/**
+	 * @var int Min value
+	 **/
+	protected $min = 0;
+
+
+	/**
+	 * Constructor
+	 *
+	 * @param int Min value
+	 * @return void
+	 **/
+	public function __construct($min) {
+		$this->min = (int) $min;
+	} // end func: __construct
+
 
 
 	/**
@@ -20,7 +38,8 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return (bool) filter_var($value, FILTER_VALIDATE_EMAIL);
+		$value = (int) $value;
+		return $value >= $this->min;
 	} // end func: validate
 
 
@@ -34,9 +53,9 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . ' must be a valid email address';
+		return $validator->get_label($field) . " must be greater than or equal to {$this->min}";
 	} // end func: get_error_message
 
 
 
-} // end class: Email
+} // end class: NumMin

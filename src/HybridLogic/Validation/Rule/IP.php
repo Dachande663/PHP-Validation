@@ -3,12 +3,22 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Validate an email address
+ * Input value must be a valid IPv4 or v6 address
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class Email implements \HybridLogic\Validation\Rule {
+class IP implements \HybridLogic\Validation\Rule {
+
+
+	/**
+	 * Constructor
+	 *
+	 * @return void
+	 **/
+	public function __construct() {
+	} // end func: __construct
+
 
 
 	/**
@@ -20,7 +30,7 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return (bool) filter_var($value, FILTER_VALIDATE_EMAIL);
+		return (bool) filter_var($value, FILTER_VALIDATE_IP);
 	} // end func: validate
 
 
@@ -34,9 +44,9 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . ' must be a valid email address';
+		return $validator->get_label($field) . ' must be a valid IP address';
 	} // end func: get_error_message
 
 
 
-} // end class: Email
+} // end class: IP

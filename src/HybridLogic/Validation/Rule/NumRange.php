@@ -3,12 +3,38 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Validate an email address
+ * NumRange
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class Email implements \HybridLogic\Validation\Rule {
+class NumRange implements \HybridLogic\Validation\Rule {
+
+
+	/**
+	 * @var int Min value
+	 **/
+	protected $min = 0;
+
+
+	/**
+	 * @var int Max value
+	 **/
+	protected $max = 0;
+
+
+	/**
+	 * Constructor
+	 *
+	 * @param int Min value
+	 * @param int Max value
+	 * @return void
+	 **/
+	public function __construct($min, $max) {
+		$this->min = (int) $min;
+		$this->max = (int) $max;
+	} // end func: __construct
+
 
 
 	/**
@@ -20,7 +46,8 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return (bool) filter_var($value, FILTER_VALIDATE_EMAIL);
+		$value = (int) $value;
+		return ($value >= $this->min and $value <= $this->max);
 	} // end func: validate
 
 
@@ -34,9 +61,9 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . ' must be a valid email address';
+		return $validator->get_label($field) . " must be between {$this->min} and {$this->max}";
 	} // end func: get_error_message
 
 
 
-} // end class: Email
+} // end class: NumRange

@@ -10,6 +10,7 @@ for filtering and validating any input array.
 
 * Introduction
 * Examples
+* Rule Reference
 * Running Tests
 * Troubleshooting
 * Changelog
@@ -62,19 +63,51 @@ if($validator->is_valid($_POST)) {
 ```
 
 
-3.0 Running Tests
+3.0 Rule Reference
+------------------
+
+Rule         | ? | Description
+--------------------------
+NotEmpty     | N | Makes this a required field
+Equal        | Y | Input must match provided string
+NotEqual     | N | Input must not match provided string
+Matches      | Y | Input must match value of another field
+InArray      | N | Input must be in an array of values
+
+MinLength    | Y | Input length must be greater than or equal to value
+MaxLength    | Y | Input length must be less  than or equal to value
+ExactLength  | N | Input length must be exactly value
+
+Alpha        | N | Input can only contain a-z characters
+AlphaNumeric | N | Input can contain a-z and 0-9
+AlphaSlug    | N | Input can contain a-z, 0-9, - and _
+
+Regex        | N | Input must match provided regular expression
+Email        | Y | Input must be a valid email format
+URL          | N | Input must be a valid URL format
+IP           | N | Input must be a valid IPv4 or v6 address
+True         | N | Input must be true e.g. checkbox
+
+Number       | N | Input must be numeric e.g. -99 or 123.45
+NumNatural   | N | Input must be an integer zero or above
+NumMin       | N | Input value must be greater than or equal to value
+NumMax       | N | Input value must be less than or equal to value
+NumRange     | N | Input value must be between min and max values
+
+
+4.0 Running Tests
 -----------------
 
 @todo
 
 
-4.0 Troubleshooting
+5.0 Troubleshooting
 -------------------
 
 @todo
 
 
-5.0 Changelog
+6.0 Changelog
 -------------
 
 * **[2012-12-08]** Initial Version

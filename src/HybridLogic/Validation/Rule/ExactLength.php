@@ -3,12 +3,30 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Validate an email address
+ * String must be exact length
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class Email implements \HybridLogic\Validation\Rule {
+class ExactLength implements \HybridLogic\Validation\Rule {
+
+
+	/**
+	 * @var int Length
+	 **/
+	protected $length = 0;
+
+
+	/**
+	 * Constructor
+	 *
+	 * @param int Length
+	 * @return void
+	 **/
+	public function __construct($length) {
+		$this->length = (int) $length;
+	} // end func: __construct
+
 
 
 	/**
@@ -20,7 +38,7 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return (bool) filter_var($value, FILTER_VALIDATE_EMAIL);
+		return strlen($value) === $this->length;
 	} // end func: validate
 
 
@@ -34,9 +52,9 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . ' must be a valid email address';
+		return $validator->get_label($field) . " must be exactly {$this->length} characters in length";
 	} // end func: get_error_message
 
 
 
-} // end class: Email
+} // end class: ExactLength

@@ -3,28 +3,34 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Input can be a maximum of length
+ * Ensure input value is in supplied array
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class MaxLength implements \HybridLogic\Validation\Rule {
+class InArray implements \HybridLogic\Validation\Rule {
 
 
 	/**
-	 * @var int Max length
+	 * @var array Array to match against
 	 **/
-	protected $length = 0;
+	protected $array;
+
+
+	/**
+	 * @var bool If true, match against keys not values
+	 **/
+	protected $match_keys;
 
 
 	/**
 	 * Constructor
 	 *
-	 * @param int Max length
 	 * @return void
 	 **/
-	public function __construct($length) {
-		$this->length = (int) $length;
+	public function __construct(array $array, $match_keys = false) {
+		$this->array = $array;
+		$this->match_keys = (bool) $match_keys;
 	} // end func: __construct
 
 
@@ -38,7 +44,11 @@ class MaxLength implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return strlen($value) <= $this->length;
+		if($this->match_keys === true) {
+			return array_key_exists($value, $this->array);
+		} else {
+			return in_array($value, $this->array);
+		}
 	} // end func: validate
 
 
@@ -52,9 +62,9 @@ class MaxLength implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . " cannot be longer than {$this->length} characters in length";
+		return $validator->get_label($field) . ' must be in the available list of options';
 	} // end func: get_error_message
 
 
 
-} // end class: MinLength
+} // end class: InArray

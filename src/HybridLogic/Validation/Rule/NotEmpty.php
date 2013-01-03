@@ -3,12 +3,12 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Validate an email address
+ * Input value cannot be empty
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class Email implements \HybridLogic\Validation\Rule {
+class NotEmpty implements \HybridLogic\Validation\Rule {
 
 
 	/**
@@ -20,7 +20,7 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return (bool) filter_var($value, FILTER_VALIDATE_EMAIL);
+		return !empty($value);
 	} // end func: validate
 
 
@@ -34,9 +34,9 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . ' must be a valid email address';
+		return $validator->get_label($field) . ' must not be empty';
 	} // end func: get_error_message
 
 
 
-} // end class: Email
+} // end class: NotEmpty

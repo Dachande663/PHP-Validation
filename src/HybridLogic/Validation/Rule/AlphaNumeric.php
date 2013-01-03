@@ -3,12 +3,22 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Validate an email address
+ * Ensure characters are a-z or 0-9
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class Email implements \HybridLogic\Validation\Rule {
+class AlphaNumeric implements \HybridLogic\Validation\Rule {
+
+
+	/**
+	 * Constructor
+	 *
+	 * @return void
+	 **/
+	public function __construct() {
+	} // end func: __construct
+
 
 
 	/**
@@ -20,7 +30,7 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return (bool) filter_var($value, FILTER_VALIDATE_EMAIL);
+		return ctype_alnum($value);
 	} // end func: validate
 
 
@@ -34,9 +44,9 @@ class Email implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . ' must be a valid email address';
+		return $validator->get_label($field) . ' must use just the letters A to Z or numbers 0-9';
 	} // end func: get_error_message
 
 
 
-} // end class: Email
+} // end class: AlphaNumeric

@@ -3,7 +3,7 @@
 namespace HybridLogic\Validation\Rule;
 
 /**
- * Minimum string length
+ * Input must be a minimum of length
  *
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
@@ -52,7 +52,7 @@ class MinLength implements \HybridLogic\Validation\Rule {
 	 * @return string Error message
 	 **/
 	public function get_error_message($field, $value, $validator) {
-		return $validator->get_label($field) . ' must be at least ' . $this->length . ' characters in length';
+		return $validator->get_label($field) . " must be at least {$this->length} characters in length";
 	} // end func: get_error_message
 
 
