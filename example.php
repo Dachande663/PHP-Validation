@@ -14,7 +14,7 @@ $input = array(
 );
 
 
-$validator = new Validator($input);
+$validator = new Validator();
 
 
 $validator
@@ -35,7 +35,7 @@ $validator
 ;
 
 
-if($validator->is_valid()) {
+if($validator->is_valid($input)) {
 	var_dump('success', $validator->get_data());
 } else {
 	var_dump('error', $validator->get_errors(), $validator->get_data());

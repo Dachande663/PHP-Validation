@@ -40,18 +40,6 @@ class Validator {
 
 
 	/**
-	 * Constructor
-	 *
-	 * @param array Input data to validate
-	 * @return void
-	 **/
-	public function __construct(array $data) {
-		$this->data = $data;
-	} // end func: __construct
-
-
-
-	/**
 	 * Set the Label for a given Field
 	 *
 	 * @param string Field name
@@ -123,11 +111,12 @@ class Validator {
 	/**
 	 * Validate this object!
 	 *
+	 * @param array Input data to validate
 	 * @return bool True if valid
 	 **/
-	public function is_valid() {
+	public function is_valid(array $data) {
 
-		$this->data = $this->apply_filters($this->data);
+		$this->data = $this->apply_filters($data);
 
 		$this->errors = $this->test_rules();
 

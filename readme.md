@@ -24,7 +24,9 @@ or any other data source.
 
 Each field can have its own label, pre-filters and rules
 applied to it. Rules extend a very simple interface, making
-adding custom rules very easy.
+adding custom rules very easy. The Validator object itself
+can be executed multiple times against different datasets,
+making it very useful for processing dynamic data.
 
 This library currently ships with only a base set of rules,
 but more are been added.
@@ -37,7 +39,7 @@ but more are been added.
 use HybridLogic\Validation\Validator;
 use HybridLogic\Validation\Rule;
 
-$validator = new Validator($_POST);
+$validator = new Validator();
 $validator
 	->set_label('name', 'first name')
 	->set_label('email', 'email address')
@@ -52,7 +54,7 @@ $validator
 	->add_rule('password', new Rule\Matches('password2'))
 ;
 
-if($validator->is_valid()) {
+if($validator->is_valid($_POST)) {
 	print_r($validator->get_data());
 } else {
 	print_r($validator->get_errors());
