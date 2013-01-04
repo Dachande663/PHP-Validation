@@ -12,16 +12,6 @@ class IP implements \HybridLogic\Validation\Rule {
 
 
 	/**
-	 * Constructor
-	 *
-	 * @return void
-	 **/
-	public function __construct() {
-	} // end func: __construct
-
-
-
-	/**
 	 * Validate this Rule
 	 *
 	 * @param string Field name

@@ -12,6 +12,32 @@ class URL implements \HybridLogic\Validation\Rule {
 
 
 	/**
+	 * @var array Allowed protocols
+	 **/
+	protected $allowed_domains;
+
+
+	/**
+	 * @var array Allowed protocols
+	 **/
+	protected $allowed_protocols = array('http', 'https');
+
+
+	/**
+	 * Constructor
+	 *
+	 * @param string Allowed domains
+	 * @param string Allowed protocols
+	 * @return void
+	 **/
+	public function __construct(array $allowed_domains = null, array $allowed_protocols = null) {
+		if($allowed_domains !== null) $this->allowed_domains = $allowed_domains;
+		if($allowed_protocols !== null) $this->allowed_protocols = $allowed_protocols;
+	} // end func: __construct
+
+
+
+	/**
 	 * Validate this Rule
 	 *
 	 * @param string Field name
@@ -21,11 +47,15 @@ class URL implements \HybridLogic\Validation\Rule {
 	 **/
 	public function validate($field, $value, $validator) {
 
-		if(substr($value, 0, 7) !== 'http://' or substr($value, 0, 8) !== 'https://') {
-			$value = "http://$value";
-		}
+		if(empty($value)) return false;
+		if(!filter_var($value, FILTER_VALIDATE_URL)) return false;
 
-		return (bool) filter_var($value, FILTER_VALIDATE_URL);
+		$url = parse_url($value);
+		if(!in_array($url['scheme'], $this->allowed_protocols)) return false;
+
+		if($this->allowed_domains === null) return true;
+
+		return in_array($url['host'], $this->allowed_domains);
 
 	} // end func: validate
 

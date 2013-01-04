@@ -12,16 +12,6 @@ class AlphaNumeric implements \HybridLogic\Validation\Rule {
 
 
 	/**
-	 * Constructor
-	 *
-	 * @return void
-	 **/
-	public function __construct() {
-	} // end func: __construct
-
-
-
-	/**
 	 * Validate this Rule
 	 *
 	 * @param string Field name
@@ -30,6 +20,7 @@ class AlphaNumeric implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
+		if(empty($value)) return true;
 		return ctype_alnum($value);
 	} // end func: validate
 

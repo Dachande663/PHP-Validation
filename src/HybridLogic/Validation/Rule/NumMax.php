@@ -38,6 +38,7 @@ class NumMax implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
+		if(strlen($value) === 0) return false;
 		$value = (int) $value;
 		return $value <= $this->max;
 	} // end func: validate

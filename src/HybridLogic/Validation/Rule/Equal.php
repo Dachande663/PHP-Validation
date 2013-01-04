@@ -38,7 +38,7 @@ class Equal implements \HybridLogic\Validation\Rule {
 	 * @return bool True if rule passes
 	 **/
 	public function validate($field, $value, $validator) {
-		return $value === $value;
+		return $value === $this->value;
 	} // end func: validate
 
 
