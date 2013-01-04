@@ -68,29 +68,27 @@ if($validator->is_valid($_POST)) {
 3.0 Rule Reference
 ------------------
 
-Rule         | Description
----------------------------------------------------------------------
-NotEmpty     | Makes this a required field
-Equal        | Input must match provided string
-NotEqual     | Input must not match provided string
-Matches      | Input must match value of another field
-InArray      | Input must be in an array of values
-MinLength    | Input length must be greater than or equal to value
-MaxLength    | Input length must be less  than or equal to value
-ExactLength  | Input length must be exactly value
-Alpha        | Input can only contain a-z characters
-AlphaNumeric | Input can contain a-z and 0-9
-AlphaSlug    | Input can contain a-z, 0-9, - and _
-Regex        | Input must match provided regular expression
-Email        | Input must be a valid email format
-URL          | Input must be a valid URL format
-IP           | Input must be a valid IPv4 or v6 address
-True         | Input must be true e.g. checkbox
-Number       | Input must be numeric e.g. -99 or 123.45
-NumNatural   | Input must be an integer zero or above
-NumMin       | Input value must be greater than or equal to value
-NumMax       | Input value must be less than or equal to value
-NumRange     | Input value must be between min and max values
+* **NotEmpty** Makes this a required field
+* **Equal** Input must match provided string
+* **NotEqual** Input must not match provided string
+* **Matches** Input must match value of another field
+* **InArray** Input must be in an array of values
+* **MinLength** Input length must be greater than or equal to value
+* **MaxLength** Input length must be less  than or equal to value
+* **ExactLength** Input length must be exactly value
+* **Alpha** Input can only contain a-z characters
+* **AlphaNumeric** Input can contain a-z and 0-9
+* **AlphaSlug** Input can contain a-z, 0-9, - and _
+* **Regex** Input must match provided regular expression
+* **Email** Input must be a valid email format
+* **URL** Input must be a valid URL format
+* **IP** Input must be a valid IPv4 or v6 address
+* **True** Input must be true e.g. checkbox
+* **Number** Input must be numeric e.g. -99 or 123.45
+* **NumNatural** Input must be an integer zero or above
+* **NumMin** Input value must be greater than or equal to value
+* **NumMax** Input value must be less than or equal to value
+* **NumRange** Input value must be between min and max values
 
 
 4.0 Running Tests
