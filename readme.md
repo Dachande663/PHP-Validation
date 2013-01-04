@@ -4,6 +4,8 @@ Validation Library
 A simple, extensible validation library for PHP with support
 for filtering and validating any input array.
 
+[![Build Status](https://travis-ci.org/Dachande663/PHP-Validation.png)](https://travis-ci.org/Dachande663/PHP-Validation)
+
 
 0.0 Table of Contents
 ---------------------
