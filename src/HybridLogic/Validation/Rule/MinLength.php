@@ -8,7 +8,7 @@ namespace HybridLogic\Validation\Rule;
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class MinLength implements \HybridLogic\Validation\Rule {
+class MinLength implements \HybridLogic\Validation\Rule, \HybridLogic\Validation\ClientSide\jQueryValidationRule {
 
 
 	/**
@@ -54,6 +54,31 @@ class MinLength implements \HybridLogic\Validation\Rule {
 	public function get_error_message($field, $value, $validator) {
 		return $validator->get_label($field) . " must be at least {$this->length} characters in length";
 	} // end func: get_error_message
+
+
+
+	/**
+	 * jQuery Validation rule name
+	 *
+	 * @return string Rule name
+	 **/
+	public function jquery__get_rule_name() {
+		return 'minlength';
+	} // end func: jquery__get_rule_name
+
+
+
+	/**
+	 * jQuery Validation rule definition
+	 *
+	 * @return array Rule
+	 **/
+	public function jquery__get_rule_definition() {
+		return array(
+			'required' => true, // Required otherwise jQuery doesn't enforce rule
+			'minlength' => $this->length,
+		);
+	} // end func: jquery__get_rule_definition
 
 
 

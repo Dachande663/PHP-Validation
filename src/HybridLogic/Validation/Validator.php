@@ -109,6 +109,17 @@ class Validator {
 
 
 	/**
+	 * Return all currently defined rules
+	 *
+	 * @return array Rules
+	 **/
+	public function get_rules() {
+		return $this->rules;
+	} // end func: get_rules
+
+
+
+	/**
 	 * Validate this object!
 	 *
 	 * @param array Input data to validate

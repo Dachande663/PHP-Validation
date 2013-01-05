@@ -1,0 +1,96 @@
+<?php
+
+include './autoload.php';
+
+use HybridLogic\Validation\Validator;
+use HybridLogic\Validation\Rule;
+
+$validator = new Validator();
+
+$validator
+
+	->set_label('name', 'your name')
+	->add_filter('name', 'trim')
+	->add_rule('name', new Rule\MinLength(5))
+	->add_rule('name', new Rule\MaxLength(10))
+
+	->add_filter('email', 'trim')
+	->add_filter('email', 'strtolower')
+	->add_rule('email', new Rule\MinLength(5))
+	->add_rule('email', new Rule\Email())
+
+	->add_rule('password', new Rule\Matches('password2'))
+	->set_label('password2', 'password confirmation')
+
+;
+
+$jquery_validator = new HybridLogic\Validation\ClientSide\jQueryValidator($validator);
+
+$jquery = $jquery_validator->generate();
+
+
+?><!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery Validation Test</title>
+</head>
+
+<body>
+
+
+<form action="">
+
+	<p>
+		<label for="name">Your name</label><br>
+		<input type="text" name="name">
+	</p>
+
+	<p>
+		<label for="email">Email</label><br>
+		<input type="text" name="email">
+	</p>
+
+	<p>
+		<label for="password">Password</label><br>
+		<input type="text" name="password">
+	</p>
+
+	<p>
+		<label for="password2">Password confirmation</label><br>
+		<input type="text" name="password2">
+	</p>
+
+	<p>
+		<input type="submit" name="submit" value="Submit">
+	</p>
+
+</form>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.10.0/jquery.validate.js"></script>
+
+
+<script type="text/javascript">
+
+<?php foreach($jquery['methods'] as $method_name => $method_function): ?>
+	jQuery.validator.addMethod("<?php echo $method_name; ?>", <?php echo $method_function; ?>);
+<?php endforeach; ?>
+
+$("form").validate({
+
+	submitHandler: function(form, e) {
+		console.log("SUBMIT", form, e);
+	},
+
+	rules: <?php echo json_encode($jquery['rules']); ?>,
+	messages: <?php echo json_encode($jquery['messages']); ?>
+
+});
+
+</script>
+
+
+</body>
+</html>
