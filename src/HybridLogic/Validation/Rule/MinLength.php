@@ -75,7 +75,6 @@ class MinLength implements \HybridLogic\Validation\Rule, \HybridLogic\Validation
 	 **/
 	public function jquery__get_rule_definition() {
 		return array(
-			'required' => true, // Required otherwise jQuery doesn't enforce rule
 			'minlength' => $this->length,
 		);
 	} // end func: jquery__get_rule_definition

@@ -8,7 +8,7 @@ namespace HybridLogic\Validation\Rule;
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class Matches implements \HybridLogic\Validation\Rule {
+class Matches implements \HybridLogic\Validation\Rule, \HybridLogic\Validation\ClientSide\jQueryValidationRule {
 
 
 	/**
@@ -55,6 +55,30 @@ class Matches implements \HybridLogic\Validation\Rule {
 	public function get_error_message($field, $value, $validator) {
 		return $validator->get_label($field) . ' must match ' . $validator->get_label($this->compare_against);
 	} // end func: get_error_message
+
+
+
+	/**
+	 * jQuery Validation rule name
+	 *
+	 * @return string Rule name
+	 **/
+	public function jquery__get_rule_name() {
+		return 'equalTo';
+	} // end func: jquery__get_rule_name
+
+
+
+	/**
+	 * jQuery Validation rule definition
+	 *
+	 * @return array Rule
+	 **/
+	public function jquery__get_rule_definition() {
+		return array(
+			'equalTo' => "[name='{$this->compare_against}']",
+		);
+	} // end func: jquery__get_rule_definition
 
 
 

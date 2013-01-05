@@ -8,7 +8,7 @@ namespace HybridLogic\Validation\Rule;
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class NumMax implements \HybridLogic\Validation\Rule {
+class NumMax implements \HybridLogic\Validation\Rule, \HybridLogic\Validation\ClientSide\jQueryValidationRule {
 
 
 	/**
@@ -56,6 +56,30 @@ class NumMax implements \HybridLogic\Validation\Rule {
 	public function get_error_message($field, $value, $validator) {
 		return $validator->get_label($field) . " must be less than or equal to {$this->max}";
 	} // end func: get_error_message
+
+
+
+	/**
+	 * jQuery Validation rule name
+	 *
+	 * @return string Rule name
+	 **/
+	public function jquery__get_rule_name() {
+		return 'max';
+	} // end func: jquery__get_rule_name
+
+
+
+	/**
+	 * jQuery Validation rule definition
+	 *
+	 * @return array Rule
+	 **/
+	public function jquery__get_rule_definition() {
+		return array(
+			'max' => $this->max,
+		);
+	} // end func: jquery__get_rule_definition
 
 
 
