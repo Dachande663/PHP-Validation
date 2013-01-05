@@ -8,7 +8,7 @@ namespace HybridLogic\Validation\Rule;
  * @package Validation
  * @author Luke Lanchester <luke@lukelanchester.com>
  **/
-class InArray implements \HybridLogic\Validation\Rule {
+class InArray implements \HybridLogic\Validation\Rule, \HybridLogic\Validation\ClientSide\jQueryValidationRule {
 
 
 	/**
@@ -64,6 +64,47 @@ class InArray implements \HybridLogic\Validation\Rule {
 	public function get_error_message($field, $value, $validator) {
 		return $validator->get_label($field) . ' must be in the available list of options';
 	} // end func: get_error_message
+
+
+
+	/**
+	 * jQuery Validation rule name
+	 *
+	 * @return string Rule name
+	 **/
+	public function jquery__get_rule_name() {
+		return 'php_inarray';
+	} // end func: jquery__get_rule_name
+
+
+
+	/**
+	 * jQuery Validation rule definition
+	 *
+	 * @return array Rule
+	 **/
+	public function jquery__get_rule_definition() {
+
+		$keys = $this->match_keys ? array_keys($this->array) : array_values($this->array);
+		$array = array_fill_keys($keys, 1);
+
+		return array(
+			'php_inarray' => $array,
+		);
+	} // end func: jquery__get_rule_definition
+
+
+
+	/**
+	 * jQuery Validation method
+	 *
+	 * @return string JavaScript function
+	 **/
+	public function jquery__get_method_definition() {
+		return 'function(value, element, keys){
+			return this.optional(element) || (value in keys);
+		}';
+	} // end func: jquery__get_method_definition
 
 
 

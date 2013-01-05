@@ -20,7 +20,6 @@ $validator
 	->add_rule('email', new Rule\NotEmpty())
 	->add_rule('email', new Rule\MinLength(5))
 	->add_rule('email', new Rule\Email())
-
 	->add_rule('age', new Rule\NotEmpty())
 	->add_rule('age', new Rule\NumRange(13, 18))
 
