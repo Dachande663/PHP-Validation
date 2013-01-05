@@ -2,7 +2,8 @@ Validation Library
 ==================
 
 A simple, extensible validation library for PHP with support
-for filtering and validating any input array.
+for filtering and validating any input array along with
+generating client side validation code.
 
 [![Build Status](https://travis-ci.org/Dachande663/PHP-Validation.png)](https://travis-ci.org/Dachande663/PHP-Validation)
 
@@ -31,8 +32,9 @@ adding custom rules very easy. The Validator object itself
 can be executed multiple times against different datasets,
 making it very useful for processing dynamic data.
 
-This library currently ships with only a base set of rules,
-but more are been added.
+Additionally, validation rules can be generated for client
+side scripts. Currently only jQuery Validate is supplied
+but additional interfaces can be added easily.
 
 
 2.0 Examples
@@ -63,6 +65,8 @@ if($validator->is_valid($_POST)) {
 	print_r($validator->get_errors());
 }
 ```
+
+More detailed examples can be found in ./examples.
 
 
 3.0 Rule Reference
