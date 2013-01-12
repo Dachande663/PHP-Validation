@@ -1,7 +1,15 @@
 {
 	"name": "hybridlogic/validation",
-	"description": "Validation libraries for forms and services",
+	"description": "A simple, extensible validation library for PHP with support for filtering and validating any input array along with generating client side validation code.",
 	"keywords": ["validation", "forms", "services", "models", "rules", "jquery", "client-side"],
+	"homepage": "https://github.com/Dachande663/PHP-Validation",
+	"license": "MIT",
+	"authors": [{
+		"name": "Luke Lanchester",
+		"email": "luke@lukelanchester.com",
+		"homepage": "http://hybridlogic.co.uk",
+		"role": "Developer"
+	}],
 	"require": {
 		"php": ">=5.3.0"
 	}
