@@ -22,13 +22,13 @@ class Validator {
 
 
 	/**
-	 * @var array Filters
+	 * @var array Labels
 	 **/
 	protected $labels = array();
 
 
 	/**
-	 * @var array Labels
+	 * @var array Filters
 	 **/
 	protected $filters = array();
 
